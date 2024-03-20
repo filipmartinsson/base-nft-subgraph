@@ -1,0 +1,62 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BaseGods
+    network: base
+    source:
+      address: "0x2d53d0545cd1275b69040e3c50587e2cc4443a52"
+      abi: BaseGods
+      startBlock: 9704533
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AllowedSeaDropUpdated
+        - Approval
+        - ApprovalForAll
+        - BatchMetadataUpdate
+        - ConsecutiveTransfer
+        - ContractURIUpdated
+        - MaxSupplyUpdated
+        - OwnershipTransferred
+        - PotentialOwnerUpdated
+        - ProvenanceHashUpdated
+        - RoyaltyInfoUpdated
+        - SeaDropTokenDeployed
+        - Transfer
+      abis:
+        - name: BaseGods
+          file: ./abis/BaseGods.json
+      eventHandlers:
+        - event: AllowedSeaDropUpdated(address[])
+          handler: handleAllowedSeaDropUpdated
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BatchMetadataUpdate(uint256,uint256)
+          handler: handleBatchMetadataUpdate
+        - event: ConsecutiveTransfer(indexed uint256,uint256,indexed address,indexed address)
+          handler: handleConsecutiveTransfer
+        - event: ContractURIUpdated(string)
+          handler: handleContractURIUpdated
+        - event: MaxSupplyUpdated(uint256)
+          handler: handleMaxSupplyUpdated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PotentialOwnerUpdated(address)
+          handler: handlePotentialOwnerUpdated
+        - event: ProvenanceHashUpdated(bytes32,bytes32)
+          handler: handleProvenanceHashUpdated
+        - event: RoyaltyInfoUpdated(address,uint256)
+          handler: handleRoyaltyInfoUpdated
+        - event: SeaDropTokenDeployed()
+          handler: handleSeaDropTokenDeployed
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/base-gods.ts
