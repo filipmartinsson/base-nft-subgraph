@@ -1,5 +1,4 @@
 import {
-  AllowedSeaDropUpdated as AllowedSeaDropUpdatedEvent,
   Approval as ApprovalEvent,
   ApprovalForAll as ApprovalForAllEvent,
   BatchMetadataUpdate as BatchMetadataUpdateEvent,
@@ -14,7 +13,6 @@ import {
   Transfer as TransferEvent
 } from "../generated/BaseGods/BaseGods"
 import {
-  AllowedSeaDropUpdated,
   Approval,
   ApprovalForAll,
   BatchMetadataUpdate,
@@ -28,21 +26,6 @@ import {
   SeaDropTokenDeployed,
   Transfer
 } from "../generated/schema"
-
-export function handleAllowedSeaDropUpdated(
-  event: AllowedSeaDropUpdatedEvent
-): void {
-  let entity = new AllowedSeaDropUpdated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.allowedSeaDrop = event.params.allowedSeaDrop
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
 
 export function handleApproval(event: ApprovalEvent): void {
   let entity = new Approval(

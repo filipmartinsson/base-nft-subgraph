@@ -16,7 +16,6 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AllowedSeaDropUpdated
         - Approval
         - ApprovalForAll
         - BatchMetadataUpdate
@@ -33,8 +32,6 @@ dataSources:
         - name: BaseGods
           file: ./abis/BaseGods.json
       eventHandlers:
-        - event: AllowedSeaDropUpdated(address[])
-          handler: handleAllowedSeaDropUpdated
         - event: Approval(indexed address,indexed address,indexed uint256)
           handler: handleApproval
         - event: ApprovalForAll(indexed address,indexed address,bool)

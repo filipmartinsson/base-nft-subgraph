@@ -1,11 +1,3 @@
-type AllowedSeaDropUpdated @entity(immutable: true) {
-  id: Bytes!
-  allowedSeaDrop: [Bytes!]! # address[]
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type Approval @entity(immutable: true) {
   id: Bytes!
   owner: Bytes! # address
