@@ -106,3 +106,21 @@ type Transfer @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+type Token @entity {
+  id: ID!
+  tokenID: BigInt!
+  tokenURI: String!
+  ipfsHashURI: TokenMetadata
+  updatedAtTimestamp: BigInt!
+  owner: User!
+}
+type TokenMetadata @entity {
+  id: ID!
+  image: String!
+  name: String!
+  metadata: String!
+}
+type User @entity {
+  id: ID!
+  tokens: [Token!]! @derivedFrom(field: "owner")
+}
